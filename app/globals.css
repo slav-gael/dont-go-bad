@@ -1,5 +1,5 @@
 :root {
-  background: #ffffff;
+  background: #00cc66;
 }
 
 /* Dark mode users
@@ -13,4 +13,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+h1{
+  text-align: center;
 }
