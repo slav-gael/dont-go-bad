@@ -27,6 +27,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Group Members and Contributions
 
+Cameron Wittrock - About page, this readme
 
+Gillian Hepworth - insert stuff here
+
+Kade Morrill - insert stuff here
 
 
