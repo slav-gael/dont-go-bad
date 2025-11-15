@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div>
       Don't Go Bad!
-      <Link href="About.tsx">Cool test link!</Link>
+      <Link href="./About">Cool test link!</Link>
     </div>
   );
 }
