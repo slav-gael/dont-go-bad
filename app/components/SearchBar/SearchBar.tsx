@@ -1,47 +1,67 @@
 'use client'
 
-import React, { ReactHTMLElement } from "react"
-import { useState } from "react"
-import "./SearchBar.css"
+import React, { useState, useEffect } from "react";
+import "./SearchBar.css";
 
-type SearchBarProps = {
-    recipes: string[]
+type Recipe = {
+  strMeal: string // title
+  strMealThumb: string // image
+  idMeal: string // id
 }
 
-const SearchBar = ({ recipes }: SearchBarProps) => {
-    // searchValue stores current searchbar input, fill in useState parameter to add placeholder text
-    const [searchValue, setSearchValue] = useState("");
+const SearchBar = () => {
+  const [searchValue, setSearchValue] = useState(""); // user input
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [loading, setLoading] = useState(false); // waiting on fetchRecipes, used to let client know it is loading
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchValue(event.target.value)
+    useEffect(() => {
+        if (!searchValue) { // if no input, don't try to fetch
+            setRecipes([]);
+            return;
+        }
+
+    // ----------------------------------------------------------------
+    // Searches by !!main!! ingredient, currently does not allow partial matches
+    // i.e. "chicken" will bring up all recipes with chicken in the name, but not "chick"
+    // since this searches by main ingredient, something like "cabbage" yields no results
+    // ----------------------------------------------------------------
+    async function fetchRecipes() {
+        setLoading(true);
+        const res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchValue}`);
+        const data = await res.json();
+        const recipesArray: Recipe[] = data.meals || [];
+        setRecipes(recipesArray);
+        setLoading(false);
     }
 
-    const handleClearClick = () => {
-        setSearchValue("")
-    }
+    fetchRecipes();
+}, [searchValue]); // fetch whenever user types
 
-    // Only display clear button when there is text in the searchbar
-    const shouldDisplyButton = searchValue.length > 0;
+  return (
+    <div>
+      <input
+        className="search-bar"
+        type="text"
+        value={searchValue}
+        onChange={(e) => setSearchValue(e.target.value)}
+        placeholder="Search for an ingredient..."
+      />
 
-    const filteredRecipes = recipes.filter((recipe) => {
-        return recipe.includes(searchValue)
-    })
+        {/* Clear button and loading both render conditionally */}
+      {searchValue && <button onClick={() => setSearchValue("")}>Clear</button>}
 
+      {loading && <p>Loading...</p>}
 
-    // onChange executes function argument when input value changes
-    // shouldDisplayButton shortcircuiting - conditionally render if true
-    return (
-        <div>
-            <input className="search-bar" type="text" value={searchValue} onChange={handleInputChange} />
-            {shouldDisplyButton && <button onClick={handleClearClick}>clear</button>}
+      <ul>
+        {recipes.map((recipe) => (
+          <li key={recipe.idMeal}>
+            <img src={recipe.strMealThumb} alt={recipe.strMeal} />
+            {recipe.strMeal}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
-            <ul>
-                {filteredRecipes.map((recipe) => {
-                    return <li key={recipe}>{recipe}</li>
-                })}
-            </ul>
-        </div>
-        )
-}
-
-export default SearchBar
+export default SearchBar;
