@@ -2,17 +2,19 @@
 
 import Link from "next/link";
 import SearchBar from "./components/SearchBar/SearchBar";
+import NavBar from "./components/NavBar/NavBar"
 
 export default function Home() {
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Don't Go Bad!</h1>
-      <p>Find recipes by main ingredient:</p>
+    <>
+      <NavBar />
+      <div style={{ padding: "20px" }}>
+        <h1>Don't Go Bad!</h1>
+        <p>Find recipes by main ingredient:</p>
 
-      {/* See comment block in SearchBar.tsx to see how it is currently searching. */}
-      <SearchBar />
-
-      <Link href="/about">Cool test link!</Link>
-    </div>
+        {/* See comment block in SearchBar.tsx to see how it is currently searching. */}
+        <SearchBar />
+      </div>
+    </>
   );
 }

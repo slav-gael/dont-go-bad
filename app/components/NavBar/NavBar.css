@@ -1,0 +1,12 @@
+.navBar {
+    display: flex;
+}
+
+.navBar li {
+    list-style-type: none;
+    display:block;
+    padding:10px;
+    border-style:solid;
+    border-width:2px;
+    /*idk put more stuff here to whoever is making it pretty*/
+}
