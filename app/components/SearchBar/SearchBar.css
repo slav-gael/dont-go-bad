@@ -54,9 +54,19 @@
 }
 
 /* Random Recipe button */ 
-.
+.random-btn {
+    width: 100%;
+    padding: 10px;
+    background: #00cc66;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    curson: pointer;
+    margin-top: 10px;
+}
 /* 2-column grid */
 .recipe-grid {
+    flex: 1;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
@@ -91,4 +101,31 @@
     margin-top: 6px;
     color: blue;
     text-decoration: underline;
+}
+
+/* Expand Buttons */
+.expand-btn {
+    background: none;
+    border: none;
+    color: #0077cc;
+    curson: pointer;
+    margin: 6px 0;
+}
+
+/* Youtube Link */
+.youtub-link {
+    color: red; 
+    text-decoration: underline;
+    margin-top: 6px;
+    display: block;
+}
+
+/* Save Button */
+.save-btn {
+    margin-top: 10px;
+    background: #ffd700;
+    border: none;
+    padding: 8px;
+    border-radius: 6px;
+    curson: pointer;
 }
