@@ -51,15 +51,28 @@ const SearchBar = () => {
       {searchValue && <button onClick={() => setSearchValue("")}>Clear</button>}
 
       {loading && <p>Loading...</p>}
-
-      <ul>
+      <div className="recipe-grid">
         {recipes.map((recipe) => (
-          <li key={recipe.idMeal}>
-            <img src={recipe.strMealThumb} alt={recipe.strMeal} />
-            {recipe.strMeal}
-          </li>
-        ))}
-      </ul>
+          <div className="recipe-card" key={recipe.idMeal}>
+            <img
+              className="recipe-img"
+              src={recipe.strMealThumb}
+              alt={recipe.strMeal}
+            />
+      
+            <div className="recipe-title">{recipe.strMeal}</div>
+      
+            <a
+              className="recipe-link"
+              href={`https://www.themealdb.com/meal/${recipe.idMeal}`}
+              target="_blank"
+            >
+        View Full Recipe →
+      </a>
+    </div>
+  ))}
+</div>
+
     </div>
   );
 };
