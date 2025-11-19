@@ -26,14 +26,14 @@
 
 /* Toggle button */
 .sidebar-toggle {
-    background: #004d26;
+    background: #077431;
     color: white;
     border: none;
     padding: 10px 14px;
     font-size: 16px;
     border-radius: 6px;
     margin-bottom: 10px;
-    curson: pointer;
+    cursor: pointer;
 }
 
 /* Layout-container */
@@ -73,11 +73,11 @@
 .random-btn {
     width: 100%;
     padding: 10px;
-    background: #00cc66;
+    background: #077431;
     border: none;
     border-radius: 6px;
     color: white;
-    curson: pointer;
+    cursor: pointer;
     margin-top: 10px;
 }
 /* 2-column grid */
@@ -95,7 +95,7 @@
     background: white;
     border-radius: 10px;
     padding: 12px;
-    box-shadow: 0.4rem 0.4rem 0.6rem rgba(0,0,0,0.15);
+    box-shadow: 0.4rem 0.4rem 0.4rem rgba(0,0,0,0.15);
     text-align: center;
 }
 
