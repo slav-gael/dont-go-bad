@@ -1,11 +1,7 @@
 import NavBar from "../components/NavBar/NavBar"
 
 export default function AboutPage() {
-
-
-    return(
-        <>
-            <NavBar />
+        <NavBar />
             <div>
                 <h1>About Don't Go Bad</h1>
             </div>
@@ -83,5 +79,4 @@ export default function AboutPage() {
                     Our database depends upon TheMeanDB, so our recipes are limited.
                 </p>
             </div>
-        </>
-    )
+        }
