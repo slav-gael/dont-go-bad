@@ -1,7 +1,6 @@
 import NavBar from "../components/NavBar/NavBar"
 
 export default function AboutPage() {
-        <NavBar />
             <div>
                 <h1>About Don't Go Bad</h1>
             </div>
