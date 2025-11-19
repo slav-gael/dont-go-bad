@@ -1,10 +1,10 @@
-/* Layout Container*/
+/* Layout Container */
 .search-bar {
     display: flex;
     gap: 20px;
 }
 
-/*Adding a Collapsible sidebar*/
+/* Adding a Collapsible sidebar */
 .sidebar {
     width: 250px;
     background: white;
@@ -15,12 +15,12 @@
     transition: transform 0.3s ease;
 }
 
-/*Make the sidebar disappear*/
+/* Make the sidebar disappear */
 .sidebar.hidden {
     transform: translateX(-300px);
 }
 
-/*toggle button*/
+/* Toggle button */
 .sidebar-toggle {
     background: #004d26;
     color: white;
@@ -32,6 +32,29 @@
     curson: pointer;
 }
 
+/* Filter groups */
+.filter-group {
+    margin-bottom: 20px;
+}
+
+/* Labels */
+.filter-label {
+    font-weight: bold;
+    margin-bottom: 6px;
+    display: block;
+}
+
+/* Drobpdowns and Inputs */
+.sidebar select,
+.sidebar input {
+    width: 100%;
+    padding: 5px;
+    border-radius: 6px;
+    border: 1pd solid #ccc;
+}
+
+/* Random Recipe button */ 
+.
 /* 2-column grid */
 .recipe-grid {
     display: grid;
