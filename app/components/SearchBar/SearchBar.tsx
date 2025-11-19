@@ -125,6 +125,17 @@ export default function SearchBar() {
           ))}
         </div>
 
+        <div className="instructions mt-4">
+          <h2 className="text-xl font-bold mb-2">Instructions</h2>
+        
+          <ol className="list-decimal ml-6 space-y-2">
+            {steps.map((step, index) => (
+              <li key={index}>{step}.</li>
+            ))}
+          </ol>
+        </div>
+
+
       </div>
     </div>
   );
