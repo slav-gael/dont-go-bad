@@ -12,7 +12,6 @@ export default function Home() {
         <h1>Don't Go Bad!</h1>
         <p>Find recipes by main ingredient:</p>
 
-        {/* See comment block in SearchBar.tsx to see how it is currently searching. */}
         <SearchBar />
       </div>
     </>
