@@ -15,7 +15,22 @@
     transition: transform 0.3s ease;
 }
 
-/**/
+/*Make the sidebar disappear*/
+.sidebar.hidden {
+    transform: translateX(-300px);
+}
+
+/*toggle button*/
+.sidebar-toggle {
+    background: #004d26;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    font-size: 16px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    curson: pointer;
+}
 
 /* 2-column grid */
 .recipe-grid {
