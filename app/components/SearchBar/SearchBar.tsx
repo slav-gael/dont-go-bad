@@ -137,7 +137,13 @@ function RecipeCard({ recipe }: { recipe: Recipe }) {
   const [details, setDetails] = useState<any>(null);
   const [expandedIngredients, setExpandedIngredients] = useState(false);
   const [expandedInstructions, setExpandedInstructions] = useState(false);
-
+  
+function formatInstructions(instructions: string): string[] {
+  return instructions
+  .split(/\.(?!\d)/)//splits at the .
+  .map(step => step.trim())
+  .filter(step => step.length > 0);
+}
   // Fetch full recipe details when clicked
   async function loadDetails() {
     if (details) return;
