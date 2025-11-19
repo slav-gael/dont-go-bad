@@ -11,16 +11,17 @@
 
 /* Adding a Collapsible sidebar */
 .sidebar {
-    width: 0;
-    padding: 0;
-    margin: 0;
+    width: 250px;
+    padding-right: 10px;
+    transform: all 0.3s ease; /*collapse instead of slide*/
     overflow: hidden;
-    transform: translateX(0); /*collapse instead of slide*/
 }
 
 /* Make the sidebar disappear */
 .sidebar.hidden {
-    transform: translateX(-300px);
+    width: 0;
+    padding: 0;
+    margin: 0;
 }
 
 /* Toggle button */
@@ -81,9 +82,13 @@
 }
 /* 2-column grid */
 .recipe-grid {
-    /*flex: 1;*/
-    transition: margin-left 0.3s ease, margin-right 0.3s ease;
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    transition: all 0.3s ease;
 }
+
 
 /* Recipe card styles */
 .recipe-card {
