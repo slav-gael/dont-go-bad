@@ -23,7 +23,34 @@ export default function SearchBar() {
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
-  // Fetch categories and areas once
+  // Pantry stored locally
+  const [pantry, setPantry] = useState<string[]>(
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("pantry") || "[]")
+      : []
+  );
+
+  function savePantry(list: string[]) {
+    setPantry(list);
+    localStorage.setItem("pantry", JSON.stringify(list));
+  }
+
+  function addPantryItem(item: string) {
+    if (!item.trim()) return;
+    const updated = [...new Set([...pantry, item.trim()])];
+    savePantry(updated);
+  }
+
+  function removePantryItem(item: string) {
+    const updated = pantry.filter(i => i !== item);
+    savePantry(updated);
+  }
+
+  function clearPantry() {
+    savePantry([]);
+  }
+
+  // Load categories + areas
   useEffect(() => {
     async function loadFilters() {
       const catData = await fetch("https://www.themealdb.com/api/json/v1/1/list.php?c=list").then(r => r.json());
@@ -35,36 +62,59 @@ export default function SearchBar() {
     loadFilters();
   }, []);
 
-  // Fetch based on selected filters
+  // MULTI-FILTER SEARCH
   useEffect(() => {
     async function fetchRecipes() {
       setLoading(true);
 
-      let url = "";
+      let urls: string[] = [];
 
+      // Ingredient (single)
+      if (searchValue && searchMode === "ingredient") {
+        urls.push(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchValue}`);
+      }
+
+      // Pantry ingredients (multi)
+      pantry.forEach(item =>
+        urls.push(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${item}`)
+      );
+
+      // Category filter
       if (selectedCategory) {
-        url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${selectedCategory}`;
-      } else if (selectedArea) {
-        url = `https://www.themealdb.com/api/json/v1/1/filter.php?a=${selectedArea}`;
-      } else if (searchMode === "ingredient" && searchValue) {
-        url = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchValue}`;
-      } else if (searchMode === "name" && searchValue) {
-        url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`;
-      } else {
+        urls.push(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${selectedCategory}`);
+      }
+
+      // Area filter
+      if (selectedArea) {
+        urls.push(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${selectedArea}`);
+      }
+
+      // If user searches by name
+      if (searchValue && searchMode === "name") {
+        urls.push(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`);
+      }
+
+      // If nothing selected
+      if (urls.length === 0) {
         setRecipes([]);
         setLoading(false);
         return;
       }
 
-      const res = await fetch(url);
-      const data = await res.json();
+      const allResponses = await Promise.all(urls.map(u => fetch(u).then(r => r.json())));
 
-      setRecipes(data.meals || []);
+      // Flatten all meals arrays
+      let combined = allResponses.flatMap(r => r.meals || []);
+
+      // Remove duplicates
+      const unique = Array.from(new Map(combined.map(m => [m.idMeal, m])).values());
+
+      setRecipes(unique);
       setLoading(false);
     }
 
     fetchRecipes();
-  }, [searchValue, searchMode, selectedCategory, selectedArea]);
+  }, [searchValue, searchMode, selectedCategory, selectedArea, pantry]);
 
   // Surprise Me
   async function randomRecipe() {
@@ -74,7 +124,15 @@ export default function SearchBar() {
 
   return (
     <div>
-      {/* Toggle for sidebar */}
+      {/* Search input (FIXED) */}
+      <input
+        type="text"
+        className="search-bar"
+        placeholder="Search ingredient or recipe..."
+        value={searchValue}
+        onChange={(e) => setSearchValue(e.target.value)}
+      />
+
       <button className="sidebar-toggle" onClick={() => setSidebarOpen(!sidebarOpen)}>
         {sidebarOpen? "Hide Filters": "Show Filters"}
       </button>
@@ -102,7 +160,7 @@ export default function SearchBar() {
             </select>
           </div>
 
-          {/* Area */}
+          {/* Areas */}
           <div className="filter-group">
             <label className="filter-label">Cuisine / Area</label>
             <select value={selectedArea} onChange={(e) => setSelectedArea(e.target.value)}>
@@ -111,51 +169,55 @@ export default function SearchBar() {
             </select>
           </div>
 
-          {/* Random recipe */}
+          {/* Pantry Section */}
+          <div className="filter-group">
+            <label className="filter-label">Your Pantry</label>
+
+            <input
+              type="text"
+              placeholder="Add ingredient..."
+              onKeyDown={(e) => {
+                if (e.key === "Enter") addPantryItem((e.target as HTMLInputElement).value);
+              }}
+            />
+
+            <ul>
+              {pantry.map(item => (
+                <li key={item}>
+                  {item}
+                  <button onClick={() => removePantryItem(item)}>X</button>
+                </li>
+              ))}
+            </ul>
+
+            <button onClick={clearPantry}>Clear Pantry</button>
+          </div>
+
+          {/* Random */}
           <button className="random-btn" onClick={randomRecipe}>Surprise Me!</button>
 
         </div>
 
-        {/* Recipe Grid */}
+        {/* Recipe Results */}
         <div className="recipe-grid">
           {loading && <p>Loading...</p>}
-
           {recipes.map(recipe => (
             <RecipeCard key={recipe.idMeal} recipe={recipe} />
           ))}
         </div>
-
-        <div className="instructions mt-4">
-          <h2 className="text-xl font-bold mb-2">Instructions</h2>
-        
-          <ol className="list-decimal ml-6 space-y-2">
-            {steps.map((step, index) => (
-              <li key={index}>{step}.</li>
-            ))}
-          </ol>
-        </div>
-
 
       </div>
     </div>
   );
 }
 
-//
-// RecipeCard inside same file (no new folders)
-//
+
+// RecipeCard (same as before)
 function RecipeCard({ recipe }: { recipe: Recipe }) {
   const [details, setDetails] = useState<any>(null);
   const [expandedIngredients, setExpandedIngredients] = useState(false);
   const [expandedInstructions, setExpandedInstructions] = useState(false);
-  
-function formatInstructions(instructions: string): string[] {
-  return instructions
-  .split(/\.(?!\d)/)//splits at the .
-  .map(step => step.trim())
-  .filter(step => step.length > 0);
-}
-  // Fetch full recipe details when clicked
+
   async function loadDetails() {
     if (details) return;
     const data = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipe.idMeal}`).then(r => r.json());
