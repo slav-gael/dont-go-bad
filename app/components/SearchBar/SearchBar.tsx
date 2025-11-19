@@ -137,7 +137,7 @@ export default function SearchBar() {
         {sidebarOpen? "Hide Filters": "Show Filters"}
       </button>
 
-      <div className="search-layout">
+      <div className="search-layout layout-container">
 
         {/* Sidebar */}
         <div className={`sidebar ${sidebarOpen ? "": "hidden"}`}>
