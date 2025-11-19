@@ -55,7 +55,7 @@ export default function AboutPage() {
             <p>
                 Why it's useful:
                 * saves money
-                * reduces food waste
+                * reduces food waste   
                 * helps with meal planning
                 * quick recipe discover
             </p>
@@ -73,7 +73,7 @@ export default function AboutPage() {
                 Future Features
             </h2>
             <p>
-                ?
+                Full Pantry Functionality
             </p>
         </div>
         <div className="textBlurb">
