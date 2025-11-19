@@ -1,8 +1,13 @@
 /* Layout Container */
 .search-bar {
-    display: flex;
-    gap: 20px;
+    width: 100%;
+    max-width: 300px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 10px;
 }
+
 
 /* Adding a Collapsible sidebar */
 .sidebar {
