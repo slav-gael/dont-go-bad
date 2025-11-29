@@ -177,7 +177,11 @@ export default function SearchBar() {
               type="text"
               placeholder="Add ingredient..."
               onKeyDown={(e) => {
-                if (e.key === "Enter") addPantryItem((e.target as HTMLInputElement).value);
+                if (e.key === "Enter") {
+                  const input = e.target as HTMLInputElement;
+                  addPantryItem(input.value);
+                  input.value = ""; 
+                };
               }}
             />
 
