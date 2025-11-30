@@ -9,6 +9,10 @@ type Recipe = {
   strMealThumb: string;
 };
 
+type FilterResponse = {
+  meals: Recipe[] | null;
+};
+
 export default function SearchBar() {
   const [searchValue, setSearchValue] = useState("");
   const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -64,57 +68,61 @@ export default function SearchBar() {
 
   // MULTI-FILTER SEARCH
   useEffect(() => {
-    async function fetchRecipes() {
-      setLoading(true);
+  async function fetchRecipes() {
+  setLoading(true);
 
-      let urls: string[] = [];
+  const filterResults: Recipe[][] = [];
 
-      // Ingredient (single)
-      if (searchValue && searchMode === "ingredient") {
-        urls.push(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchValue}`);
-      }
+  // Search by main
+  if (searchValue && searchMode === "ingredient") {
+    const res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchValue}`).then(r => r.json());
+    filterResults.push(res.meals ?? []);
+  }
 
-      // Pantry ingredients (multi)
-      pantry.forEach(item =>
-        urls.push(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${item}`)
-      );
+  // Pantry ingredients (multi)
+  for (const item of pantry) {
+    const res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${item}`).then(r => r.json());
+    filterResults.push(res.meals ?? []);
+  }
 
-      // Category filter
-      if (selectedCategory) {
-        urls.push(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${selectedCategory}`);
-      }
+  if (selectedCategory) {
+    const res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${selectedCategory}`).then(r => r.json());
+    filterResults.push(res.meals ?? []);
+  }
 
-      // Area filter
-      if (selectedArea) {
-        urls.push(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${selectedArea}`);
-      }
+  if (selectedArea) {
+    const res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${selectedArea}`).then(r => r.json());
+    filterResults.push(res.meals ?? []);
+  }
 
-      // If user searches by name
-      if (searchValue && searchMode === "name") {
-        urls.push(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`);
-      }
+  if (searchValue && searchMode === "name") {
+    const res = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`).then(r => r.json());
+    filterResults.push(res.meals ?? []);
+  }
 
-      // If nothing selected
-      if (urls.length === 0) {
-        setRecipes([]);
-        setLoading(false);
-        return;
-      }
+  // If no filters selected, show empty
+  if (filterResults.length === 0) {
+    setRecipes([]);
+    setLoading(false);
+    return;
+  }
 
-      const allResponses = await Promise.all(urls.map(u => fetch(u).then(r => r.json())));
+  // !!Intersect all filter results!!
+  let intersection = filterResults[0];
+  for (let i = 1; i < filterResults.length; i++) {
+    const ids = new Set(filterResults[i].map(m => m.idMeal));
+    intersection = intersection.filter(m => ids.has(m.idMeal));
+  }
 
-      // Flatten all meals arrays
-      let combined = allResponses.flatMap(r => r.meals || []);
+  // Remove duplicates
+  const unique = Array.from(new Map(intersection.map(m => [m.idMeal, m])).values());
 
-      // Remove duplicates
-      const unique = Array.from(new Map(combined.map(m => [m.idMeal, m])).values());
+  setRecipes(unique);
+  setLoading(false);
+}
 
-      setRecipes(unique);
-      setLoading(false);
-    }
-
-    fetchRecipes();
-  }, [searchValue, searchMode, selectedCategory, selectedArea, pantry]);
+  fetchRecipes();
+}, [searchValue, searchMode, selectedCategory, selectedArea, pantry]);
 
   // Surprise Me
   async function randomRecipe() {
@@ -271,7 +279,7 @@ function RecipeCard({ recipe }: { recipe: Recipe }) {
 
       {details?.strYoutube && (
         <a className="youtube-link" href={details.strYoutube} target="_blank">
-          🎥 Watch Video
+          Watch Video
         </a>
       )}
     </div>
