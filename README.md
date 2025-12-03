@@ -1,5 +1,5 @@
 ## Overview
-Don't Go Bad is a website designed to help you find recipes to use that one ingredient on before it goes bad. It is currently being hosted at https://dont-go-bad-ccnt.vercel.app
+Don't Go Bad is a website designed to help you find recipes to use that one ingredient on before it goes bad. It is currently being hosted at https://dont-go-bad.vercel.app
 
 ## Features
 Don't Go Bad uses TheMealDB API to allow you to search for recipes from an extensive catalogue. You can also check out the recipe details by clicking on it.
@@ -31,6 +31,6 @@ Cameron Wittrock - About page, this readme
 
 Gillian Hepworth - insert stuff here
 
-Kade Morrill - insert stuff here
+Kade Morrill - Components, hosting
 
 
