@@ -33,6 +33,10 @@ export default function SearchBar() {
       ? JSON.parse(localStorage.getItem("pantry") || "[]")
       : []
   );
+  const [usePantry, setUsePantry] = useState(true);
+  const toggleUsePantry = (event:any) => {
+    setUsePantry(event.target.checked);
+  };
 
   function savePantry(list: string[]) {
     setPantry(list);
@@ -53,6 +57,8 @@ export default function SearchBar() {
   function clearPantry() {
     savePantry([]);
   }
+
+  
 
   // Load categories + areas
   useEffect(() => {
@@ -80,9 +86,11 @@ export default function SearchBar() {
   }
 
   // Pantry ingredients (multi)
-  for (const item of pantry) {
-    const res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${item}`).then(r => r.json());
-    filterResults.push(res.meals ?? []);
+  if(usePantry){
+    for (const item of pantry) {
+      const res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${item}`).then(r => r.json());
+      filterResults.push(res.meals ?? []);
+    }
   }
 
   if (selectedCategory) {
@@ -122,7 +130,7 @@ export default function SearchBar() {
 }
 
   fetchRecipes();
-}, [searchValue, searchMode, selectedCategory, selectedArea, pantry]);
+}, [searchValue, searchMode, selectedCategory, selectedArea, pantry, usePantry]);
 
   // Surprise Me
   async function randomRecipe() {
@@ -201,6 +209,10 @@ export default function SearchBar() {
                 </li>
               ))}
             </ul>
+            <label style={{display:"flex"}}>
+              <input style={{display:"flex"}} type="checkbox" defaultChecked onChange={toggleUsePantry}></input>
+              Use pantry to filter search
+            </label>
 
             <button onClick={clearPantry}>Clear Pantry</button>
           </div>
