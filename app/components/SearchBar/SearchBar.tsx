@@ -186,6 +186,7 @@ export default function SearchBar() {
 
             <input
               type="text"
+              id="pantry-input"
               placeholder="Add ingredient..."
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
