@@ -28,11 +28,14 @@ export default function SearchBar() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   // Pantry stored locally
-  const [pantry, setPantry] = useState<string[]>(
-    typeof window !== "undefined"
-      ? JSON.parse(localStorage.getItem("pantry") || "[]")
-      : []
-  );
+  const [pantry, setPantry] = useState<string[]>([]);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("pantry");
+    if (saved) {
+      setPantry(JSON.parse(saved));
+    }
+  }, []);
 
   function savePantry(list: string[]) {
     setPantry(list);
