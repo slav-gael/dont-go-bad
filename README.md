@@ -2,7 +2,12 @@
 Don't Go Bad is a website designed to help you find recipes to use that one ingredient on before it goes bad supporting a variety of filters. It is currently being hosted at https://dont-go-bad.vercel.app
 
 ## Features
-Don't Go Bad uses TheMealDB API to allow you to search for recipes from an extensive catalogue. Optional filters allow the user to search by region, name, main ingredient, and multiple ingredients. A pantry feature allows users to store multiple ingredients to search and filter by.
+Don't Go Bad allows the user to search for recipes from an extensive catalogue. Optional filters enable searching meals by region, name, main ingredient, and multiple ingredients. A pantry feature allows users to store multiple ingredients to search and filter by.
+
+## Built With
+**Framework**: NextJS 16, React 18, typescript
+**Styling**: CSS Modules
+**Data & API**: TheMealDB 
 
 ## Setup
 If you would like to run this website locally, below are some instructions:
