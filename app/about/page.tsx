@@ -53,11 +53,7 @@ export default function AboutPage() {
                 Benefits
             </h2>
             <p>
-                Why it's useful:
-                * saves money
-                * reduces food waste   
-                * helps with meal planning
-                * quick recipe discover
+                Save money and prevent waste, and enjoy delicious food by using up items in your pantry before they're bad!
             </p>
         </div>
         <div className="textBlurb">
@@ -66,14 +62,6 @@ export default function AboutPage() {
             </h2>
             <p>
                 We have forgotten kale one too many times in the back of the fridge to not think about how to fix this issue.
-            </p>
-        </div>
-        <div className="textBlurb">
-            <h2>
-                Future Features
-            </h2>
-            <p>
-                Full Pantry Functionality
             </p>
         </div>
         <div className="textBlurb">

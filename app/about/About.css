@@ -1,4 +1,19 @@
 .textBlurb {
-    max-width:26em;
-    margin:auto;
+    max-width: 40rem;
+    margin: 1rem auto;
+    padding: 0 .5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.textBlurb ul {
+    padding-left: 1.25rem;
+    margin-top: 0.5rem;
+}
+
+/* Mobile spacing */
+@media (max-width: 600px) {
+    .textBlurb {
+        margin: 1.5rem auto;
+    }
 }
