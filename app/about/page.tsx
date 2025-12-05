@@ -7,7 +7,7 @@ export default function AboutPage() {
         
     <>
         <NavBar />
-        <div>
+        <div className="textBlurb">
             <h1>About Don't Go Bad</h1>
         </div>
         <div className="textBlurb">
