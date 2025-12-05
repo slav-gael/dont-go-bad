@@ -213,7 +213,7 @@ function toggleUsePantry() {
               ))}
             </ul>
             <label style={{display:"flex"}}>
-              <input style={{display:"flex"}} type="checkbox" defaultChecked onChange={toggleUsePantry}></input>
+              <input style={{display:"flex", transform: "scale(0.7"}} type="checkbox" defaultChecked onChange={toggleUsePantry}></input>
               Use pantry to filter search
             </label>
 
