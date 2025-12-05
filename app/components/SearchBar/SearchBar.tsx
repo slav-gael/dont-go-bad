@@ -14,21 +14,26 @@ type FilterResponse = {
 };
 
 export default function SearchBar() {
-  const [searchValue, setSearchValue] = useState("");
-  const [recipes, setRecipes] = useState<Recipe[]>([]);
-  const [loading, setLoading] = useState(false);
+const [searchValue, setSearchValue] = useState("");
+const [recipes, setRecipes] = useState<Recipe[]>([]);
+const [loading, setLoading] = useState(false);
 
-  const [searchMode, setSearchMode] = useState("ingredient");
-  const [categories, setCategories] = useState<string[]>([]);
-  const [areas, setAreas] = useState<string[]>([]);
+const [searchMode, setSearchMode] = useState("ingredient");
+const [categories, setCategories] = useState<string[]>([]);
+const [areas, setAreas] = useState<string[]>([]);
 
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [selectedArea, setSelectedArea] = useState("");
+const [selectedCategory, setSelectedCategory] = useState("");
+const [selectedArea, setSelectedArea] = useState("");
 
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+const [sidebarOpen, setSidebarOpen] = useState(true);
 
-  // Pantry stored locally
-  const [pantry, setPantry] = useState<string[]>([]);
+const [pantry, setPantry] = useState<string[]>([]);
+
+const [usePantry, setUsePantry] = useState(true);
+
+function toggleUsePantry() {
+  setUsePantry(prev => !prev);
+}
 
   useEffect(() => {
     const saved = localStorage.getItem("pantry");
@@ -83,9 +88,11 @@ export default function SearchBar() {
   }
 
   // Pantry ingredients (multi)
-  for (const item of pantry) {
-    const res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${item}`).then(r => r.json());
-    filterResults.push(res.meals ?? []);
+  if(usePantry){
+    for (const item of pantry) {
+      const res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${item}`).then(r => r.json());
+      filterResults.push(res.meals ?? []);
+    }
   }
 
   if (selectedCategory) {
@@ -125,7 +132,7 @@ export default function SearchBar() {
 }
 
   fetchRecipes();
-}, [searchValue, searchMode, selectedCategory, selectedArea, pantry]);
+}, [searchValue, searchMode, selectedCategory, selectedArea, pantry, usePantry]);
 
   // Surprise Me
   async function randomRecipe() {
@@ -205,6 +212,10 @@ export default function SearchBar() {
                 </li>
               ))}
             </ul>
+            <label style={{display:"flex"}}>
+              <input style={{display:"flex"}} type="checkbox" defaultChecked onChange={toggleUsePantry}></input>
+              Use pantry to filter search
+            </label>
 
             <button onClick={clearPantry}>Clear Pantry</button>
           </div>
