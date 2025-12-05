@@ -6,7 +6,9 @@ Don't Go Bad allows the user to search for recipes from an extensive catalogue. 
 
 ## Built With
 **Framework**: NextJS 16, React 18, typescript
+
 **Styling**: CSS Modules
+
 **Data & API**: TheMealDB 
 
 ## Setup
