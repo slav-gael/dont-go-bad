@@ -31,6 +31,6 @@ Cameron Wittrock - About page, this readme
 
 Gillian Hepworth - insert stuff here
 
-Kade Morrill - Components, hosting
+Kade Morrill - Components, hosting, styling
 
 
