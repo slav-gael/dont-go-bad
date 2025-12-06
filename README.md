@@ -1,8 +1,8 @@
 ## Overview
-Don't Go Bad is a website designed to help you find recipes to use that one ingredient on before it goes bad supporting a variety of filters. It is currently being hosted at https://dont-go-bad.vercel.app
+Don't Go Bad is a website designed to help you find recipes to use that one ingredient on before it goes bad, supporting a variety of filters. It is currently being hosted at https://dont-go-bad.vercel.app
 
 ## Features
-Don't Go Bad allows the user to search for recipes from an extensive catalogue. Optional filters enable searching meals by region, name, main ingredient, and multiple ingredients. A pantry feature allows users to store multiple ingredients to search and filter by.
+Don't Go Bad allows the user to search for recipes from an extensive catalogue. Optional filters enable searching for meals by region, name, main ingredient, and multiple ingredients. A pantry feature allows users to store multiple ingredients to search and filter by.
 
 ## Built With
 **Framework**: NextJS 16, React 18, typescript
@@ -36,7 +36,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 Cameron Wittrock - About page, this readme
 
-Gillian Hepworth - insert stuff here
+Gillian Hepworth - I figured out our search mechanism and a lot of the mechanisms and inner workings of the website, especially early on in the project. 
 
 Kade Morrill - Components, hosting, styling
 
