@@ -108,45 +108,46 @@ dont-go-bad/
 ## Pages Overview
 Home Page (app/page.tsx)
 
-Contains the main search interface where users enter an ingredient.
+* Contains the main search interface where users enter an ingredient.
 
 About Page (app/about/page.tsx)
 
-Explains:
+* Explains:
+   - Mission of the project
+   - Who the site is for
+   - How the service works
 
-Mission of the project
+* Limitations
+   - The About page uses <NavBar /> and styled content blocks.
 
-Who the site is for
-
-How the service works
-
-Limitations
-
-The About page uses <NavBar /> and styled content blocks.
-
-Components
-NavBar
-
-Located at: app/components/NavBar/
-
-Provides site navigation
-
-Styled via NavBar.css
-
-SearchBar
-
-Located at: app/components/SearchBar/
-
-Main input field for ingredient searches
-
-Styled via SearchBar.css
+* Components
+   - NavBar
+      + Located at: app/components/NavBar/
+      + Provides site navigation
+      + Styled via NavBar.css
+   - SearchBar
+      + Located at: app/components/SearchBar/
+      + Main input field for ingredient searches
+      + Styled via SearchBar.css
 
 ## Group Members and Contributions
 
-Cameron Wittrock - About page, this readme
+Cameron Wittrock 
+* Creating the About page and home page
+* Authoring this README
+* Distributing an even workload
+* Editing and revising the project
 
-Gillian Hepworth - I came up with the name of our project. Then, I figured out our search and filter mechanism and the inner workings of the website, especially early on in the project. I updated some aspects of the about page in conjunction with Cameron and did some basic styling before Kade did a fantastic job finishing things up.
+Gillian Hepworth
+* Proposing the project name
+* Designing the core search mechanism and early project architecture
+* Contributing to About page revisions
+* Contributing initial styling and general development work
 
-Kade Morrill - Components, hosting, styling
+Kade Morrill 
+* Developing the Components
+* implementing hosting and developement
+* completing the full styling pass for the final design
+* Editing and revising the project
 
 We all did an equal share, and everyone contributed equal ideas, energy, time, commitment, and actual work.
