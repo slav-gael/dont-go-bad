@@ -36,8 +36,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 Cameron Wittrock - About page, this readme
 
-Gillian Hepworth - I came up with the name of our project. I figured out our search mechanism and inner workings of the website, especially early on in the project. I updated some aspects of the about page in conjunction with Cameron and did some basic styling before Kade did a fantastic job finishing things up.
+Gillian Hepworth - I came up with the name of our project. Then, I figured out our search mechanism and the inner workings of the website, especially early on in the project. I updated some aspects of the about page in conjunction with Cameron and did some basic styling before Kade did a fantastic job finishing things up.
 
 Kade Morrill - Components, hosting, styling
 
+We all did an equal share, and everyone contributed equal ideas, energy, time, commitment, and actual work.
 
