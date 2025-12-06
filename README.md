@@ -2,17 +2,17 @@
 Don't Go Bad is a simple web application built with Next.js, designed to help users reduce food waste by finding recipes using ingredients they already have. The project integrates with TheMealDB API to fetch recipes based on a single ingredient search. It is currently being hosted at https://dont-go-bad.vercel.app
 
 ## Features
-Ingredient-Based Recipe Search – Enter an ingredient you want to use up, and the app fetches matching meals from an extensive catalogue with a multitude of filters for either one or multiple ingredients, all at the same time.
+* Ingredient-Based Recipe Search – Enter an ingredient you want to use up, and the app fetches matching meals from an extensive catalogue with a multitude of filters for either one or multiple ingredients, all at the same time.
 
-Pantry - A tool for both searching and personal use in keeping up with what groceries are at home.
+* Pantry - A tool for both searching and personal use in keeping up with what groceries are at home.
 
-Clean, Minimal UI – Easy-to-use interface with a Search Bar and Navigation Bar.
+* Clean, Minimal UI – Easy-to-use interface with a Search Bar and Navigation Bar.
 
-About Page – Provides the mission, purpose, and background of the site.
+* About Page – Provides the mission, purpose, and background of the site.
 
-Reusable Components – Modular NavBar and SearchBar components.
+* Reusable Components – Modular NavBar and SearchBar components.
 
-Built on Next.js App Router – Modern file-based routing using the /app directory.
+* Built on Next.js App Router – Modern file-based routing using the /app directory.
 
 ## Built With
 **Framework**: NextJS 16, React 18, typescript
@@ -24,11 +24,11 @@ Built on Next.js App Router – Modern file-based routing using the /app directo
 ## Setup
 If you would like to run this website locally, below are some instructions:
 
-Install dependencies with: pm install
+* Install dependencies with: pm install
 
-Start a development server with: pm run dev
+* Start a development server with: pm run dev
 
-Visit your version of http://localhost:3000
+* Visit your version of http://localhost:3000
 
 This specific project is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
@@ -55,55 +55,55 @@ https://www.themealdb.com/api/json/v1/1/filter.php?i=INGREDIENT
 
 The response includes:
 
-List of meals
+* List of meals
 
-Meal thumbnails
+* Meal thumbnails
 
-Meal IDs for deeper lookup (if expanded later)
+* Meal IDs for deeper lookup (if expanded later)
 
 ## Purpose Follow-up
 The goal of the project was to:
 
-Reduce food waste
+* Reduce food waste
 
-Help users plan meals using what they already have
+* Help users plan meals using what they already have
 
-Save money and avoid forgotten ingredients from going bad
+* Save money and avoid forgotten ingredients from going bad
 
 We succeeded in these goals.
 
 ## Project Structure
 
 dont-go-bad/
-│
-├── app/
-│ ├── about/
-│ │ ├── About.css
-│ │ └── page.tsx
-│ │
-│ ├── components/
-│ │ ├── NavBar/
-│ │ │ ├── NavBar.css
-│ │ │ └── NavBar.tsx
-│ │ ├── SearchBar/
-│ │ │ ├── SearchBar.css
-│ │ │ └── SearchBar.tsx
-│ │
-│ ├── globals.css
-│ ├── layout.tsx
-│ └── page.tsx (Home page)
-│
-├── public/ (static assets like images)
-│
-├── .gitignore
-├── README.md
-├── eslint.config.mjs
-├── next.config.ts
-├── package.json
-├── package-lock.json
-├── pnpm-lock.yaml
-├── postcss.config.mjs
-└── tsconfig.json
+│  
+├── app/  
+│ ├── about/  
+│ │ ├── About.css  
+│ │ └── page.tsx  
+│ │  
+│ ├── components/  
+│ │ ├── NavBar/        
+│ │ │ ├── NavBar.css  
+│ │ │ └── NavBar.tsx  
+│ │ ├── SearchBar/  
+│ │ │ ├── SearchBar.css  
+│ │ │ └── SearchBar.tsx  
+│ │  
+│ ├── globals.css  
+│ ├── layout.tsx  
+│ └── page.tsx (Home page)  
+│  
+├── public/ (static assets like images)  
+│  
+├── .gitignore  
+├── README.md  
+├── eslint.config.mjs  
+├── next.config.ts  
+├── package.json  
+├── package-lock.json  
+├── pnpm-lock.yaml  
+├── postcss.config.mjs  
+└── tsconfig.json  
 
 ## Pages Overview
 Home Page (app/page.tsx)
