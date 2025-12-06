@@ -1,8 +1,18 @@
 ## Overview
-Don't Go Bad is a website designed to help you find recipes to use that one ingredient on before it goes bad, supporting a variety of filters. It is currently being hosted at https://dont-go-bad.vercel.app
+Don't Go Bad is a simple web application built with Next.js, designed to help users reduce food waste by finding recipes using ingredients they already have. The project integrates with TheMealDB API to fetch recipes based on a single ingredient search. It is currently being hosted at https://dont-go-bad.vercel.app
 
 ## Features
-Don't Go Bad allows the user to search for recipes from an extensive catalogue. Optional filters enable searching for meals by region, name, main ingredient, and multiple ingredients. A pantry feature allows users to store multiple ingredients to search and filter by.
+Ingredient-Based Recipe Search – Enter an ingredient you want to use up, and the app fetches matching meals from an extensive catalogue with a multitude of filters for either one or multiple ingredients, all at the same time.
+
+Pantry - A tool for both searching and personal use in keeping up with what groceries are at home.
+
+Clean, Minimal UI – Easy-to-use interface with a Search Bar and Navigation Bar.
+
+About Page – Provides the mission, purpose, and background of the site.
+
+Reusable Components – Modular NavBar and SearchBar components.
+
+Built on Next.js App Router – Modern file-based routing using the /app directory.
 
 ## Built With
 **Framework**: NextJS 16, React 18, typescript
@@ -32,11 +42,103 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Project Structure
+dont-go-bad/
+│
+├── app/
+│ ├── about/
+│ │ ├── About.css
+│ │ └── page.tsx
+│ │
+│ ├── components/
+│ │ ├── NavBar/
+│ │ │ ├── NavBar.css
+│ │ │ └── NavBar.tsx
+│ │ ├── SearchBar/
+│ │ │ ├── SearchBar.css
+│ │ │ └── SearchBar.tsx
+│ │
+│ ├── globals.css
+│ ├── layout.tsx
+│ └── page.tsx (Home page)
+│
+├── public/ (static assets like images)
+│
+├── .gitignore
+├── README.md
+├── eslint.config.mjs
+├── next.config.ts
+├── package.json
+├── package-lock.json
+├── pnpm-lock.yaml
+├── postcss.config.mjs
+└── tsconfig.json
+
+## Pages Overview
+Home Page (app/page.tsx)
+
+Contains the main search interface where users enter an ingredient.
+
+About Page (app/about/page.tsx)
+
+Explains:
+
+Mission of the project
+
+Who the site is for
+
+How the service works
+
+Limitations
+
+The About page uses <NavBar /> and styled content blocks.
+
+Components
+NavBar
+
+Located at: app/components/NavBar/
+
+Provides site navigation
+
+Styled via NavBar.css
+
+SearchBar
+
+Located at: app/components/SearchBar/
+
+Main input field for ingredient searches
+
+Styled via SearchBar.css
+
+## API Integration: TheMealDB
+The project integrates with TheMealDB free API. On ingredient search, it sends a request such as:
+
+https://www.themealdb.com/api/json/v1/1/filter.php?i=INGREDIENT
+
+The response includes:
+
+List of meals
+
+Meal thumbnails
+
+Meal IDs for deeper lookup (if expanded later)
+
+## Purpose Follow-up
+The goal of the project was to:
+
+Reduce food waste
+
+Help users plan meals using what they already have
+
+Save money and avoid forgotten ingredients from going bad
+
+We succeeded in these goals.
+
 ## Group Members and Contributions
 
 Cameron Wittrock - About page, this readme
 
-Gillian Hepworth - I came up with the name of our project. Then, I figured out our search mechanism and the inner workings of the website, especially early on in the project. I updated some aspects of the about page in conjunction with Cameron and did some basic styling before Kade did a fantastic job finishing things up.
+Gillian Hepworth - I came up with the name of our project. Then, I figured out our search and filter mechanism and the inner workings of the website, especially early on in the project. I updated some aspects of the about page in conjunction with Cameron and did some basic styling before Kade did a fantastic job finishing things up.
 
 Kade Morrill - Components, hosting, styling
 
