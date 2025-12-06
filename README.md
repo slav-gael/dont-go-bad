@@ -24,6 +24,12 @@ Built on Next.js App Router – Modern file-based routing using the /app directo
 ## Setup
 If you would like to run this website locally, below are some instructions:
 
+Install dependencies with: pm install
+
+Start a development server with: pm run dev
+
+Visit your version of http://localhost:3000
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -42,7 +48,32 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## API Integration: TheMealDB
+The project integrates with TheMealDB free API. On ingredient search, it sends a request such as:
+
+https://www.themealdb.com/api/json/v1/1/filter.php?i=INGREDIENT
+
+The response includes:
+
+List of meals
+
+Meal thumbnails
+
+Meal IDs for deeper lookup (if expanded later)
+
+## Purpose Follow-up
+The goal of the project was to:
+
+Reduce food waste
+
+Help users plan meals using what they already have
+
+Save money and avoid forgotten ingredients from going bad
+
+We succeeded in these goals.
+
 ## Project Structure
+
 dont-go-bad/
 │
 ├── app/
@@ -110,30 +141,6 @@ Main input field for ingredient searches
 
 Styled via SearchBar.css
 
-## API Integration: TheMealDB
-The project integrates with TheMealDB free API. On ingredient search, it sends a request such as:
-
-https://www.themealdb.com/api/json/v1/1/filter.php?i=INGREDIENT
-
-The response includes:
-
-List of meals
-
-Meal thumbnails
-
-Meal IDs for deeper lookup (if expanded later)
-
-## Purpose Follow-up
-The goal of the project was to:
-
-Reduce food waste
-
-Help users plan meals using what they already have
-
-Save money and avoid forgotten ingredients from going bad
-
-We succeeded in these goals.
-
 ## Group Members and Contributions
 
 Cameron Wittrock - About page, this readme
@@ -143,4 +150,3 @@ Gillian Hepworth - I came up with the name of our project. Then, I figured out o
 Kade Morrill - Components, hosting, styling
 
 We all did an equal share, and everyone contributed equal ideas, energy, time, commitment, and actual work.
-
